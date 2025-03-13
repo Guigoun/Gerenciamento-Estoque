@@ -2,19 +2,19 @@ import os
 
 produtos = []
 
-def exibir_opcoes():
+def exibir_opcoes(): #Exibe as opções que devem ser selecionadas
     print('1. Cadastrar produto\n2. Listar produtos\n3. Atualizar Produto\n4. Remover produto\n5. Valor Total\n6. Sair\n')
 
-def voltar_menu_principal():
+def voltar_menu_principal(): #Volta para o menu principal
     input('\nDigite qualquer tecla para voltar ao menu princial: ')
     os.system('cls')
     main()
 
-def finalizar_programa():
+def finalizar_programa(): #Encerra o programa
     os.system('cls')
     print('Finalizando programa')
 
-def cadastrar_produto():
+def cadastrar_produto(): #Cadastra novos produtos
     
     while True: 
         nome_produto = input('Digite o nome do produto que deseja cadastrar: ')
@@ -44,7 +44,7 @@ def cadastrar_produto():
         
     voltar_menu_principal()
     
-def listar_produtos():
+def listar_produtos(): #Lista os produtos no estoque
     
     if not produtos:
             print('Não há produtos no estoque')
@@ -55,7 +55,7 @@ def listar_produtos():
              
     voltar_menu_principal()
   
-def atualizar_produto():
+def atualizar_produto(): #Atualiza o produto desejado
     nome_produto = input('Digite o nome do produto que deseja atualizar: ') 
     
     for produto in produtos:
@@ -84,7 +84,7 @@ def atualizar_produto():
     
     voltar_menu_principal()
 
-def remover_produto():
+def remover_produto(): #Remove um produto do estoque
     nome_produto = input('Digite o nome do produto que deseja remover: ')
 
     for produto in produtos:
@@ -97,13 +97,13 @@ def remover_produto():
     
     voltar_menu_principal()
 
-def valor_total():
+def valor_total(): #Exibe o valor total do estoque
     soma_total = sum(produto['preço'] * produto['quantidade'] for produto in produtos)
     print(f'\nO valor total do estoque é de R$ {soma_total:.2f}')
 
     voltar_menu_principal()
     
-def escolher_opcao():
+def escolher_opcao(): #Função para escolher um opção
     
     try:
         opcao = int(input('Escolha uma opção: '))
@@ -127,9 +127,9 @@ def escolher_opcao():
         print('Opção inválida!')
         voltar_menu_principal()
             
-def main():
+def main(): #Função principal a ser executada
     exibir_opcoes()
     escolher_opcao()
     
-if __name__ == "__main__":
+if __name__ == "__main__": #Linha do principal executável
     main()
