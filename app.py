@@ -1,6 +1,6 @@
 import os
 
-from modelos.produto import Estoque
+from modelos.produto import Produtos
 
 
 def exibir_opcoes(): #Exibe as opções que devem ser selecionadas
@@ -24,19 +24,19 @@ def escolher_opcao(): #Função para escolher um opção
         opcao = int(input('Escolha uma opção: '))
         
         if opcao == 1:
-            Estoque.cadastrar_produto()
+            Produtos.cadastrar_produto()
             voltar_menu_principal()
         elif opcao == 2:
-            Estoque.listar_produtos()
+            Produtos.listar_produtos()
             voltar_menu_principal()
         elif opcao == 3:
-            Estoque.atualizar_produtos()
+            Produtos.atualizar_produtos()
             voltar_menu_principal()
         elif opcao == 4:
-            Estoque.remover_produto()
+            Produtos.remover_produto()
             voltar_menu_principal()
         elif opcao == 5:
-            Estoque.valor_total_estoque()
+            Produtos.valor_total_estoque()
             voltar_menu_principal()
         elif opcao == 6:
             finalizar_programa()
@@ -48,10 +48,10 @@ def escolher_opcao(): #Função para escolher um opção
         voltar_menu_principal()
         
         
-def main():
+def main(): #Ordem que deve ser executado
     exibir_opcoes()
     escolher_opcao()
 
 
-if __name__ == "__main__":
+if __name__ == "__main__": #Principal executável
     main()

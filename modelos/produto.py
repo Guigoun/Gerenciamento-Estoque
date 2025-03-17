@@ -1,12 +1,12 @@
-class Estoque:
+class Produtos:
     
-    produtos = []
+    estoque = []
     
     def __init__(self, nome, preco, quantidade):
         self._nome = nome
         self._preco = preco
         self._quantidade = quantidade
-        Estoque.produtos.append(self)
+        Produtos.estoque.append(self)
         
         
     def __str__(self):
@@ -14,7 +14,7 @@ class Estoque:
     
     
     @classmethod
-    def entrada_dados(cls, mensagem, tipo, mensagem_de_erro):
+    def entrada_dados(cls, mensagem, tipo, mensagem_de_erro): #Função genérica de entrada de dados e tratamento
         while True:
             try:
                 valor = input(mensagem)
@@ -34,11 +34,11 @@ class Estoque:
     
     
     @classmethod
-    def cadastrar_produto(cls):
+    def cadastrar_produto(cls): #Cadastro de novos produtos
         
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja cadastrar: ', 'str', 'produto')   
          
-        if any(produto._nome == nome_produto for produto in cls.produtos):
+        if any(produto._nome == nome_produto for produto in cls.estoque):
             print(f'O produto {nome_produto} já está cadastrado! Tente outro nome')
             return
         
@@ -51,27 +51,27 @@ class Estoque:
         
     
     @classmethod
-    def listar_produtos(cls):
+    def listar_produtos(cls): #Lista os produtos em estoque
         
-        if not cls.produtos:
+        if not cls.estoque:
             print('\nNão há produtos nos estoque')
             return
             
         print(f'{'Produto'.ljust(20)} | {'Preço'.ljust(20)} | {'Quantidade'.ljust(20)}')
         
-        for produto in cls.produtos:
+        for produto in cls.estoque:
             print(f'{produto._nome.ljust(20)} | {str(produto._preco).ljust(20)} | {str(produto._quantidade).ljust(20)}')
     
     
     @classmethod
-    def atualizar_produtos(cls):
+    def atualizar_produtos(cls): #Atualiza um produto do estoque
     
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja atualizar: ', 'str', 'produto')
 
-        if not any(produto._nome == nome_produto for produto in cls.produtos):
+        if not any(produto._nome == nome_produto for produto in cls.estoque):
             print(f'\nO produto {nome_produto} não está cadastrado para ser atualizado')
                     
-        for produto in cls.produtos:
+        for produto in cls.estoque:
             if nome_produto == produto._nome:
                 novo_preco = cls.entrada_dados('Digite o novo preço do produto: ', 'float', 'preço')
                 nova_quantidade = cls.entrada_dados('Digite a nova quantidade do produto: ', 'int', 'quantidade')
@@ -82,24 +82,24 @@ class Estoque:
                       
                 
     @classmethod
-    def remover_produto(cls):
+    def remover_produto(cls): #Remove um produto do estoque
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja remover: ', 'str', 'produto')
         
-        if not any(produto._nome == nome_produto for produto in cls.produtos):
+        if not any(produto._nome == nome_produto for produto in cls.estoque):
             print(f'\nO produto {nome_produto} não foi encontrado no estoque')
         
-        for produto in cls.produtos:
+        for produto in cls.estoque:
             if nome_produto == produto._nome:
-                cls.produtos.remove(produto)
+                cls.estoque.remove(produto)
                 print('\nProduto removido com sucesso!')
             
             
     @classmethod
-    def valor_total_estoque(cls):
+    def valor_total_estoque(cls): #Faz o calculo do valor total do estoque
         
-        if not cls.produtos:
+        if not cls.estoque:
             print('\nNão há produtos cadastrados para fazer a soma do estoque')
             return
                 
-        soma_total = sum(produto._preco * produto._quantidade for produto in cls.produtos)
+        soma_total = sum(produto._preco * produto._quantidade for produto in cls.estoque)
         print(f'O valor total do estoque é de R${soma_total: .2f}')
