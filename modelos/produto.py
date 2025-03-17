@@ -3,14 +3,14 @@ class Produtos:
     estoque = []
     
     def __init__(self, nome, preco, quantidade):
-        self._nome = nome
-        self._preco = preco
-        self._quantidade = quantidade
+        self.nome = nome
+        self.preco = preco
+        self.quantidade = quantidade
         Produtos.estoque.append(self)
         
         
     def __str__(self):
-        return f'{self._nome} | {self._preco} | {self._quantidade}'
+        return f'{self.nome} | {self.preco} | {self.quantidade}'
     
     
     @classmethod
@@ -38,7 +38,7 @@ class Produtos:
         
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja cadastrar: ', 'str', 'produto')   
          
-        if any(produto._nome == nome_produto for produto in cls.estoque):
+        if any(produto.nome == nome_produto for produto in cls.estoque):
             print(f'O produto {nome_produto} já está cadastrado! Tente outro nome')
             return
         
@@ -60,7 +60,7 @@ class Produtos:
         print(f'{'Produto'.ljust(20)} | {'Preço'.ljust(20)} | {'Quantidade'.ljust(20)}')
         
         for produto in cls.estoque:
-            print(f'{produto._nome.ljust(20)} | {str(produto._preco).ljust(20)} | {str(produto._quantidade).ljust(20)}')
+            print(f'{produto.nome.ljust(20)} | {str(produto.preco).ljust(20)} | {str(produto.quantidade).ljust(20)}')
     
     
     @classmethod
@@ -68,16 +68,16 @@ class Produtos:
     
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja atualizar: ', 'str', 'produto')
 
-        if not any(produto._nome == nome_produto for produto in cls.estoque):
+        if not any(produto.nome == nome_produto for produto in cls.estoque):
             print(f'\nO produto {nome_produto} não está cadastrado para ser atualizado')
                     
         for produto in cls.estoque:
-            if nome_produto == produto._nome:
+            if nome_produto == produto.nome:
                 novo_preco = cls.entrada_dados('Digite o novo preço do produto: ', 'float', 'preço')
                 nova_quantidade = cls.entrada_dados('Digite a nova quantidade do produto: ', 'int', 'quantidade')
                                 
-                produto._preco = novo_preco
-                produto._quantidade = nova_quantidade 
+                produto.preco = novo_preco
+                produto.quantidade = nova_quantidade 
                 print('\nProduto atualizado')
                       
                 
@@ -85,11 +85,11 @@ class Produtos:
     def remover_produto(cls): #Remove um produto do estoque
         nome_produto = cls.entrada_dados('Digite o nome do produto que deseja remover: ', 'str', 'produto')
         
-        if not any(produto._nome == nome_produto for produto in cls.estoque):
+        if not any(produto.nome == nome_produto for produto in cls.estoque):
             print(f'\nO produto {nome_produto} não foi encontrado no estoque')
         
         for produto in cls.estoque:
-            if nome_produto == produto._nome:
+            if nome_produto == produto.nome:
                 cls.estoque.remove(produto)
                 print('\nProduto removido com sucesso!')
             
@@ -101,5 +101,5 @@ class Produtos:
             print('\nNão há produtos cadastrados para fazer a soma do estoque')
             return
                 
-        soma_total = sum(produto._preco * produto._quantidade for produto in cls.estoque)
+        soma_total = sum(produto.preco * produto.quantidade for produto in cls.estoque)
         print(f'O valor total do estoque é de R${soma_total: .2f}')
