@@ -59,8 +59,8 @@ class Produtos:
             
         print(f'{'Produto'.ljust(20)} | {'Preço'.ljust(20)} | {'Quantidade'.ljust(20)}')
         
-        for produto in cls.estoque:
-            print(f'{produto.nome.ljust(20)} | {str(produto.preco).ljust(20)} | {str(produto.quantidade).ljust(20)}')
+        for i,produto in enumerate(cls.estoque, start=1):
+            print(f'{i}. {produto.nome.ljust(17)} | {str(produto.preco).ljust(20)} | {str(produto.quantidade).ljust(20)}')
     
     
     @classmethod
