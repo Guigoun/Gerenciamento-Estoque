@@ -1,7 +1,5 @@
 import os
-
 from modelos.produto import Produtos
-
 
 def exibir_opcoes(): #Exibe as opções que devem ser selecionadas
     print('1. Cadastrar produto\n2. Listar produtos\n3. Atualizar Produto\n4. Remover produto\n5. Valor Total\n6. Sair\n')
@@ -19,7 +17,7 @@ def finalizar_programa(): #Encerra o programa
     
     
 def escolher_opcao(): #Função para escolher um opção
-    
+
     try:
         opcao = int(input('Escolha uma opção: '))
         
